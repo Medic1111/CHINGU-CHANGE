@@ -22,7 +22,7 @@ loginRouter.post("/", async (req, res) => {
     });
   }
 
-  res.status(200).send("Login successful");
+  res.status(200).json(user);
 });
 
 module.exports = loginRouter;
