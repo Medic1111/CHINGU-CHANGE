@@ -29,7 +29,10 @@ const Auth = () => {
 
     await axios
       .post("api/login", objToSend)
-      .then((serverRes) => console.log(serverRes.data))
+      .then((serverRes) => {
+        authCtxMgr.setIsLoggedIn(true);
+        console.log(serverRes.data);
+      })
       .then((err) => console.log(err));
   };
 
@@ -37,7 +40,10 @@ const Auth = () => {
     e.preventDefault();
     await axios
       .post("api/register", userInfo)
-      .then((serverRes) => console.log(serverRes.data))
+      .then((serverRes) => {
+        authCtxMgr.setIsLoggedIn(true);
+        console.log(serverRes.data);
+      })
       .then((err) => console.log(err));
   };
 
