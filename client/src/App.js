@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import axios from "axios";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   // let original = "USD";
@@ -17,8 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>TEST</h1>
-      {/* LOGIN/REGISTER */}
+      <Auth />
     </div>
   );
 }
