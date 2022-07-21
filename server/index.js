@@ -6,6 +6,8 @@ const axios = require("axios");
 require("dotenv").config();
 const path = require("path");
 const app = express();
+const registerRouter = require("./controllers/register");
+const loginRouter = require("./controllers/login");
 
 // MIDDLEWARES
 
@@ -20,18 +22,15 @@ mongoose.connect(`${process.env.DB_URI}`, (err) =>
   err ? console.log(err) : console.log("DB Connected")
 );
 
+// POST: REGISTER
+app.use("/api/register", registerRouter);
+
 // POST: LOGIN
-app.post("/api/login", (req, res) => {
-  const { username, password } = req.body;
-  res.send("login page");
-});
+app.use("/api/login", loginRouter);
+
 // FETCH THIRD
 // DB: ORIGINAL/CONVERTTO
-// POST: REGISTER
-app.post("/api/register", (req, res) => {
-  const { username, password } = req.body;
-  res.send("register page");
-});
+
 // GET: CURRENCY THIRD PARTY
 
 app.get("/api/:original&:convertTo", async (req, res) => {
