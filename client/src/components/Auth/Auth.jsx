@@ -40,7 +40,7 @@ const Auth = () => {
         // SET CURRENT USER, IN CTX
         // SET USER LIST
       })
-      .then((err) => {
+      .catch((err) => {
         setError(true);
         err.response.status === 500 && setErrorMsg("Server error");
         err.response.status === 401 && setErrorMsg("Wrong Credentials");
@@ -59,7 +59,7 @@ const Auth = () => {
         console.log(serverRes.data);
         // SET CURRENT USER, IN CTX
       })
-      .then((err) => {
+      .catch((err) => {
         setError(true);
         err.response.status === 500 && setErrorMsg("Server error");
         err.response.status === 409 && setErrorMsg("Already Registered");
