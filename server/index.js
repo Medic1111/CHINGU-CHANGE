@@ -8,6 +8,7 @@ const path = require("path");
 const app = express();
 const registerRouter = require("./controllers/register");
 const loginRouter = require("./controllers/login");
+const User = require("./models/user");
 
 // MIDDLEWARES
 
@@ -29,10 +30,7 @@ app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
 
 // FETCH THIRD
-// DB: ORIGINAL/CONVERTTO
-
 // GET: CURRENCY THIRD PARTY
-
 app.get("/api/:original&:convertTo", async (req, res) => {
   let original = req.params.original;
   let convertTo = req.params.convertTo;
@@ -42,6 +40,16 @@ app.get("/api/:original&:convertTo", async (req, res) => {
     )
     .then((response) => res.status(200).json(response.data))
     .catch((err) => console.log(err));
+});
+
+// POST: ORIGINAL/CONVERTTO
+app.post("/api/saveCurrencies", async (req, res) => {
+  let { original, convertTo, userID } = req.body;
+
+  const user = await User.findOne(mongoose.Types.ObjectId(`${userID}`));
+  user.currencies = [{ original, convertTo }];
+  user.save();
+  res.json(user);
 });
 
 // UNHANDLED
