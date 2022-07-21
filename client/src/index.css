@@ -19,3 +19,9 @@ body {
   color: #f7f7f7;
   position: relative;
 }
+
+@media (max-width: 798px) {
+  html {
+    font-size: 55.5%;
+  }
+}
