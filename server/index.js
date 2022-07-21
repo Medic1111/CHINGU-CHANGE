@@ -20,7 +20,30 @@ mongoose.connect(`${process.env.DB_URI}`, (err) =>
   err ? console.log(err) : console.log("DB Connected")
 );
 
-// TEST API
+// POST: LOGIN
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+  res.send("login page");
+});
+// FETCH THIRD
+// DB: ORIGINAL/CONVERTTO
+// POST: REGISTER
+app.post("/api/register", (req, res) => {
+  const { username, password } = req.body;
+  res.send("register page");
+});
+// GET: CURRENCY THIRD PARTY
+
+app.get("/api/:original&:convertTo", async (req, res) => {
+  let original = req.params.original;
+  let convertTo = req.params.convertTo;
+  await axios
+    .get(
+      `https://free.currconv.com/api/v7/convert?q=${original}_${convertTo},${convertTo}_${original}&compact=ultra&apiKey=d4cf3228112bfb5a29f5`
+    )
+    .then((response) => res.status(200).json(response.data))
+    .catch((err) => console.log(err));
+});
 
 // UNHANDLED
 app.get("*", (req, res) => {

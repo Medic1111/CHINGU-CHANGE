@@ -54,3 +54,5 @@ convertCurrency(10, 'USD', 'PHP', function(err, amount) {
 console.log(amount);
 });
 _/
+
+api_key =d4cf3228112bfb5a29f5
