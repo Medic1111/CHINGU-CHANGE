@@ -3,6 +3,8 @@ import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import Auth from "./components/Auth/Auth";
 import { authCtx } from "./store/auth-ctx";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const authCtxMgr = useContext(authCtx);
@@ -20,9 +22,11 @@ function App() {
   // useEffect(fetchApi, []);
 
   return (
-    <div className="App">
+    <React.Fragment>
+      <Header />
       {authCtxMgr.isLoggedIn ? <h1>MAIN PAGE</h1> : <Auth />}
-    </div>
+      <Footer />
+    </React.Fragment>
   );
 }
 
