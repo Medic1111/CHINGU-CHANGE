@@ -5,6 +5,8 @@ import Auth from "./components/Auth/Auth";
 import { authCtx } from "./store/auth-ctx";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Main from "./components/Main/Main";
+import Reference from "./components/Reference/Reference";
 
 function App() {
   const authCtxMgr = useContext(authCtx);
@@ -24,8 +26,9 @@ function App() {
   return (
     <React.Fragment>
       <Header />
-      {authCtxMgr.isLoggedIn ? <h1>MAIN PAGE</h1> : <Auth />}
+      {authCtxMgr.isLoggedIn ? <Main /> : <Auth />}
       <Footer />
+      {/* <Reference /> */}
     </React.Fragment>
   );
 }

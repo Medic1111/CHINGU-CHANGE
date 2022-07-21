@@ -36,7 +36,7 @@ const Auth = () => {
         setError(false);
 
         authCtxMgr.setIsLoggedIn(true);
-        console.log(serverRes.data);
+        console.log(serverRes);
         // SET CURRENT USER, IN CTX
         // SET USER LIST
       })

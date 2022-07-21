@@ -1,13 +1,19 @@
 import classes from "./Header.module.css";
 import { useContext } from "react";
 import { authCtx } from "../../store/auth-ctx";
+import { uiCtx } from "../../store/ui-ctx";
 
 const Header = () => {
   const authCtxMgr = useContext(authCtx);
+  const uiCtxMgr = useContext(uiCtx);
 
   const logoutHandler = () => {
     authCtxMgr.setIsLoggedIn(false);
     // CLEAR USER
+  };
+
+  const showRefHandler = () => {
+    uiCtxMgr.setShowModal(true);
   };
 
   return (
@@ -15,11 +21,18 @@ const Header = () => {
       className={authCtxMgr.isLoggedIn ? classes.headerIn : classes.headerOut}
     >
       <h1 className={classes.h1}>CHINGU CHANGE</h1>
-      {authCtxMgr.isLoggedIn && (
-        <p className={classes.logout} onClick={logoutHandler}>
-          Logout
-        </p>
-      )}
+      <nav className={classes.nav}>
+        {authCtxMgr.isLoggedIn && (
+          <p className={classes.logout} onClick={showRefHandler}>
+            Reference
+          </p>
+        )}
+        {authCtxMgr.isLoggedIn && (
+          <p className={classes.logout} onClick={logoutHandler}>
+            Logout
+          </p>
+        )}
+      </nav>
     </header>
   );
 };

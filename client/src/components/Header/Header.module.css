@@ -18,12 +18,20 @@
 }
 
 .logout {
-  font-size: 1.9em;
+  font-size: 1.6em;
   color: #f7f7f7e9;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
 }
 .logout:hover {
   color: #f7f7f7;
   cursor: pointer;
   transition: 0.25s;
   text-decoration: underline;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
 }
