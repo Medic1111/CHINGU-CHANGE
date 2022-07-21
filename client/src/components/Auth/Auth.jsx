@@ -6,6 +6,9 @@ import axios from "axios";
 const Auth = () => {
   const authCtxMgr = useContext(authCtx);
 
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",
@@ -30,10 +33,19 @@ const Auth = () => {
     await axios
       .post("api/login", objToSend)
       .then((serverRes) => {
+        setError(false);
+
         authCtxMgr.setIsLoggedIn(true);
         console.log(serverRes.data);
+        // SET CURRENT USER, IN CTX
       })
-      .then((err) => console.log(err));
+      .then((err) => {
+        setError(true);
+        err.response.status === 500 && setErrorMsg("Server error");
+        err.response.status === 401 && setErrorMsg("Wrong Credentials");
+        err.response.status === 404 && setErrorMsg("Not Registered");
+        console.log(err);
+      });
   };
 
   const registerHandler = async (e) => {
@@ -41,10 +53,18 @@ const Auth = () => {
     await axios
       .post("api/register", userInfo)
       .then((serverRes) => {
+        setError(false);
         authCtxMgr.setIsLoggedIn(true);
         console.log(serverRes.data);
+        // SET CURRENT USER, IN CTX
       })
-      .then((err) => console.log(err));
+      .then((err) => {
+        setError(true);
+        err.response.status === 500 && setErrorMsg("Server error");
+        err.response.status === 409 && setErrorMsg("Already Registered");
+        err.response.status === 400 && setErrorMsg("All fields required");
+        console.log(err);
+      });
   };
 
   const changeToLoginHandler = () => {
@@ -59,6 +79,7 @@ const Auth = () => {
       <h2 className={classes.h2}>
         {authCtxMgr.showLogin ? "LOGIN" : "REGISTER"}
       </h2>
+      {error && <p className={classes.p}>{errorMsg}</p>}
       <form className={classes.form}>
         <input
           onChange={inputChangeHandler}
