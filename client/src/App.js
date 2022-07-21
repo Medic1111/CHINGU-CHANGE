@@ -1,9 +1,12 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import Auth from "./components/Auth/Auth";
+import { authCtx } from "./store/auth-ctx";
 
 function App() {
+  const authCtxMgr = useContext(authCtx);
+
   // let original = "USD";
   // let convertTo = "PHP";
 
@@ -18,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <Auth />
+      {authCtxMgr.isLoggedIn ? <h1>MAIN PAGE</h1> : <Auth />}
     </div>
   );
 }
