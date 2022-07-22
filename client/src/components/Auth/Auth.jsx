@@ -38,7 +38,6 @@ const Auth = () => {
       .then((serverRes) => {
         setError(false);
         authCtxMgr.setIsLoggedIn(true);
-        console.log(serverRes.data);
         userCtxMgr.setUser(serverRes.data.id);
         userCtxMgr.setList(serverRes.data.currencies);
       })
