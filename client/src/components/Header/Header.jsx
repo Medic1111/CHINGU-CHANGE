@@ -2,14 +2,19 @@ import classes from "./Header.module.css";
 import { useContext } from "react";
 import { authCtx } from "../../store/auth-ctx";
 import { uiCtx } from "../../store/ui-ctx";
+import { userCtx } from "../../store/user-ctx";
 
 const Header = () => {
   const authCtxMgr = useContext(authCtx);
   const uiCtxMgr = useContext(uiCtx);
+  const userCtxMgr = useContext(userCtx);
 
   const logoutHandler = () => {
     authCtxMgr.setIsLoggedIn(false);
     // CLEAR USER
+    userCtxMgr.setList([]);
+    userCtxMgr.setUser("");
+    console.log(userCtxMgr.user);
   };
 
   const showRefHandler = () => {

@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const userCtx = createContext({
   user: "",
-  setUser: "",
+  setUser: () => {},
   list: [],
   setList: [],
 });

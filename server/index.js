@@ -46,10 +46,18 @@ app.get("/api/:original&:convertTo", async (req, res) => {
 app.post("/api/saveCurrencies", async (req, res) => {
   let { original, convertTo, userID } = req.body;
 
-  const user = await User.findOne(mongoose.Types.ObjectId(`${userID}`));
-  user.currencies = [{ original, convertTo }];
-  user.save();
-  res.json(user);
+  User.find({ _id: userID }, (err, doc) => {
+    err ? console.log(err) : console.log(doc);
+
+    // WORK WITH doc[0]
+    const user = doc[0];
+    user.currencies = [...user.currencies, { original, convertTo }];
+    user.save();
+    res.json(user);
+  });
+
+  // const user = await User.findOne(mongoose.Types.ObjectId(`${userID}`));
+  // console.log("user", user);
 });
 
 // UNHANDLED

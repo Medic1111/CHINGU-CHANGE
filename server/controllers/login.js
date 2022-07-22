@@ -21,7 +21,6 @@ loginRouter.post("/", async (req, res) => {
       error: "invalid username or password",
     });
   }
-
   res.status(200).json(user);
 });
 

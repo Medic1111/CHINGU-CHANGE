@@ -43,8 +43,6 @@ const FormConvert = () => {
 
   const addToListHandler = async (e) => {
     e.preventDefault();
-    console.log("Adding to list");
-    console.log(userInfo.original.toUpperCase());
     const objToSend = {
       original: userInfo.original.toUpperCase(),
       convertTo: userInfo.convertTo.toUpperCase(),
@@ -53,11 +51,11 @@ const FormConvert = () => {
     await axios
       .post("/api/saveCurrencies", objToSend)
       .then((serverRes) => {
-        console.log(serverRes.data.currencies);
         userCtxMgr.setList(serverRes.data.currencies);
       })
       .catch((err) => {
         console.log(err);
+        // ERROR HANDLER
       });
   };
 
