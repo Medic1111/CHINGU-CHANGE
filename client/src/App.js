@@ -11,24 +11,11 @@ import Reference from "./components/Reference/Reference";
 function App() {
   const authCtxMgr = useContext(authCtx);
 
-  // let original = "USD";
-  // let convertTo = "PHP";
-
-  // const fetchApi = () => {
-  //   axios
-  //     .get(`/api/${original}&${convertTo}`)
-  //     .then((serverRes) => console.log(serverRes.data))
-  //     .catch((err) => console.log(err.response.status));
-  // };
-
-  // useEffect(fetchApi, []);
-
   return (
     <React.Fragment>
       <Header />
       {authCtxMgr.isLoggedIn ? <Main /> : <Auth />}
       <Footer />
-      {/* <Reference /> */}
     </React.Fragment>
   );
 }
