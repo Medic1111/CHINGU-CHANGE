@@ -45,8 +45,15 @@
 .input::placeholder {
   color: #f7f7f7be;
 }
-
-.submit {
+.btnBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.submit,
+.disabled {
   margin-top: 2.5vh;
   height: 5vh;
   width: 35%;
@@ -64,6 +71,9 @@
   background-color: rgb(224, 198, 132);
   transition: 0.3s;
   color: rgba(4, 23, 37, 0.846);
+}
+.disabled {
+  background-color: rgba(220, 220, 220, 0.162);
 }
 
 @media (max-width: 798px) {

@@ -17,7 +17,7 @@ const Reference = () => {
         <ul className={classes.ul}>
           {currencyList.map((obj, index) => {
             return (
-              <li className={classes.li}>
+              <li key={`REF_${index}`} className={classes.li}>
                 <span>{Object.values(obj)[0]}</span>{" "}
                 <span>{Object.keys(obj)[0]}</span>
               </li>
