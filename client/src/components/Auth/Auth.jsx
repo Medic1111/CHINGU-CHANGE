@@ -1,10 +1,13 @@
 import classes from "./Auth.module.css";
 import { useContext, useState } from "react";
 import { authCtx } from "../../store/auth-ctx";
+import { userCtx } from "../../store/user-ctx";
+
 import axios from "axios";
 
 const Auth = () => {
   const authCtxMgr = useContext(authCtx);
+  const userCtxMgr = useContext(userCtx);
 
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -34,18 +37,16 @@ const Auth = () => {
       .post("api/login", objToSend)
       .then((serverRes) => {
         setError(false);
-
         authCtxMgr.setIsLoggedIn(true);
-        console.log(serverRes);
-        // SET CURRENT USER, IN CTX
-        // SET USER LIST
+        console.log(serverRes.data);
+        userCtxMgr.setUser(serverRes.data.id);
+        userCtxMgr.setList(serverRes.data.currencies);
       })
       .catch((err) => {
         setError(true);
         err.response.status === 500 && setErrorMsg("Server error");
         err.response.status === 401 && setErrorMsg("Wrong Credentials");
         err.response.status === 404 && setErrorMsg("Not Registered");
-        console.log(err);
       });
   };
 
@@ -57,14 +58,14 @@ const Auth = () => {
         setError(false);
         authCtxMgr.setIsLoggedIn(true);
         console.log(serverRes.data);
-        // SET CURRENT USER, IN CTX
+        userCtxMgr.setUser(serverRes.data.id);
+        userCtxMgr.setList(serverRes.data.currencies);
       })
       .catch((err) => {
         setError(true);
         err.response.status === 500 && setErrorMsg("Server error");
         err.response.status === 409 && setErrorMsg("Already Registered");
         err.response.status === 400 && setErrorMsg("All fields required");
-        console.log(err);
       });
   };
 
