@@ -90,26 +90,24 @@ const FormConvert = () => {
           placeholder="AMOUNT"
           onChange={inputChangeHandler}
         />
-        <label>
-          From:
-          <select
-            name="original"
-            value={userInfo.original}
-            onChange={inputChangeHandler}
-          >
-            {list}
-          </select>
-        </label>
-        <label>
-          To:
-          <select
-            name="convertTo"
-            value={userInfo.convertTo}
-            onChange={inputChangeHandler}
-          >
-            {list}
-          </select>
-        </label>
+        <label className={classes.secP}>From:</label>
+        <select
+          className={classes.input}
+          name="original"
+          value={userInfo.original}
+          onChange={inputChangeHandler}
+        >
+          {list}
+        </select>
+        <label className={classes.secP}>To:</label>
+        <select
+          className={classes.input}
+          name="convertTo"
+          value={userInfo.convertTo}
+          onChange={inputChangeHandler}
+        >
+          {list}
+        </select>
         <div className={classes.btnBox}>
           <input
             onClick={convertHandler}
