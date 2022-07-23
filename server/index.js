@@ -36,7 +36,7 @@ app.get("/api/:original&:convertTo", async (req, res) => {
   let convertTo = req.params.convertTo;
   await axios
     .get(
-      `https://free.currconv.com/api/v7/convert?q=${original}_${convertTo},${convertTo}_${original}&compact=ultra&apiKey=d4cf3228112bfb5a29f5`
+      `https://free.currconv.com/api/v7/convert?q=${original}_${convertTo},${convertTo}_${original}&compact=ultra&apiKey=${process.env.API_KEY}`
     )
     .then((response) => res.status(200).json(response.data))
     .catch((err) => console.log(err));
