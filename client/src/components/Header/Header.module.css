@@ -15,6 +15,7 @@
   font-size: 4em;
   letter-spacing: 3px;
   color: rgb(224, 198, 132);
+  text-align: center;
 }
 
 .logout {
@@ -34,4 +35,18 @@
   justify-content: center;
   align-items: center;
   gap: 1.5em;
+}
+
+@media (max-width: 798px) {
+  .headerIn,
+  .headerOut {
+    flex-direction: column;
+    height: auto;
+    gap: 2em;
+    padding: 2.5vh 5vw;
+  }
+  .nav {
+    width: 100%;
+    gap: 2em;
+  }
 }
