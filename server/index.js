@@ -53,7 +53,7 @@ app.post("/api/saveCurrencies", async (req, res) => {
     const user = doc[0];
     user.currencies = [...user.currencies, { original, convertTo }];
     user.save();
-    res.json(user);
+    res.status(204).json(user);
   });
 });
 
@@ -75,7 +75,7 @@ app.put("/api/deleteCurrency", async (req, res) => {
     );
     user.save();
   });
-  res.json(objToDelete);
+  res.status(204).json(objToDelete);
 });
 
 // UNHANDLED
