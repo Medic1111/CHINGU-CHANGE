@@ -26,7 +26,6 @@ const FormConvert = () => {
 
   const convertHandler = async (e) => {
     e.preventDefault();
-    console.log(userInfo);
 
     await axios
       .get(`/api/${userInfo.original}&${userInfo.convertTo}`)
