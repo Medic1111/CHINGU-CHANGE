@@ -30,7 +30,6 @@ const FormConvert = () => {
     await axios
       .get(`/api/${userInfo.original}&${userInfo.convertTo}`)
       .then((serverRes) => {
-        console.log(serverRes.data);
         let value = Object.values(serverRes.data);
         let mult = value[0] * Number(userInfo.amount);
         setResult(mult.toFixed(2));
@@ -89,8 +88,11 @@ const FormConvert = () => {
           placeholder="AMOUNT"
           onChange={inputChangeHandler}
         />
-        <label className={classes.secP}>From:</label>
+        <label htmlFor="original" className={classes.secP}>
+          From:
+        </label>
         <select
+          id="original"
           className={classes.input}
           name="original"
           value={userInfo.original}
@@ -98,8 +100,11 @@ const FormConvert = () => {
         >
           {list}
         </select>
-        <label className={classes.secP}>To:</label>
+        <label htmlFor="convertTo" className={classes.secP}>
+          To:
+        </label>
         <select
+          id="convertTo"
           className={classes.input}
           name="convertTo"
           value={userInfo.convertTo}
