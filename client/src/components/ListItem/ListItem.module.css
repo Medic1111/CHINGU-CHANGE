@@ -1,0 +1,19 @@
+.li {
+  font-size: 2em;
+  width: 100%;
+  padding: 0 2.5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: aqua; */
+}
+.x {
+  color: #f7f7f7;
+  font-size: 1.6em;
+  cursor: pointer;
+  color: rgb(224, 198, 132);
+}
+.x:hover {
+  color: #f7f7f7;
+  transition: 0.2s;
+}

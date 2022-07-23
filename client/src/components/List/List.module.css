@@ -30,9 +30,6 @@
   margin-top: 2vh;
   margin-bottom: 3.5vh;
 }
-.li {
-  font-size: 2em;
-}
 
 @media (max-width: 798px) {
   .aside {
