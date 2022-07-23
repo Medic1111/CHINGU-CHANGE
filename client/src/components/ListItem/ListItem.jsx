@@ -1,10 +1,12 @@
 import classes from "./ListItem.module.css";
 import { userCtx } from "../../store/user-ctx";
+import { uiCtx } from "../../store/ui-ctx";
 import { useContext } from "react";
 import axios from "axios";
 
 const ListItem = ({ obj }) => {
   const userCtxMgr = useContext(userCtx);
+  const uiCtxMgr = useContext(uiCtx);
 
   const deleteHandler = async () => {
     const data = {
@@ -23,7 +25,9 @@ const ListItem = ({ obj }) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
       });
   };
 

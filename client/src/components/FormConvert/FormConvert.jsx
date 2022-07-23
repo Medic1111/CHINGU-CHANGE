@@ -2,10 +2,12 @@ import classes from "./FormConvert.module.css";
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { userCtx } from "../../store/user-ctx";
+import { uiCtx } from "../../store/ui-ctx";
 import currencyList from "../../data/currencyList";
 
 const FormConvert = () => {
   const userCtxMgr = useContext(userCtx);
+  const uiCtxMgr = useContext(uiCtx);
 
   const [userInfo, setUserInfo] = useState({
     amount: 1,
@@ -36,7 +38,9 @@ const FormConvert = () => {
         setShowSave(true);
       })
       .catch((err) => {
-        console.log(err.response.status);
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
       });
   };
 
@@ -53,8 +57,9 @@ const FormConvert = () => {
         userCtxMgr.setList(serverRes.data.currencies);
       })
       .catch((err) => {
-        console.log(err);
-        // ERROR HANDLER
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
       });
   };
 
