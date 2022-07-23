@@ -5,6 +5,10 @@ import { userCtx } from "../../store/user-ctx";
 const List = () => {
   const userCtxMgr = useContext(userCtx);
 
+  if (!userCtxMgr.list) {
+    return null;
+  }
+
   return (
     <aside className={classes.aside}>
       <h2 className={classes.h2}>FAVORITES</h2>
