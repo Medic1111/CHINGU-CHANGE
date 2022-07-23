@@ -1,7 +1,8 @@
 import classes from "./FormConvert.module.css";
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { userCtx } from "../../store/user-ctx";
+import currencyList from "../../data/currencyList";
 
 const FormConvert = () => {
   const userCtxMgr = useContext(userCtx);
@@ -59,6 +60,23 @@ const FormConvert = () => {
       });
   };
 
+  useEffect(() => {
+    setUserInfo({
+      amount: 1,
+      convertTo: "USD",
+      original: "CAD",
+    });
+  }, []);
+
+  const list = currencyList.map((cur) => {
+    const currencyKey = Object.keys(cur)[0];
+    return (
+      <option key={currencyKey} value={currencyKey}>
+        {currencyKey}
+      </option>
+    );
+  });
+
   return (
     <section className={classes.section}>
       <h2 className={classes.h2}>CONVERT</h2>
@@ -72,24 +90,26 @@ const FormConvert = () => {
           placeholder="AMOUNT"
           onChange={inputChangeHandler}
         />
-        <p className={classes.secP}>FROM</p>
-        <input
-          name="original"
-          value={userInfo.original}
-          className={classes.input}
-          type="text"
-          placeholder="CURRENCY"
-          onChange={inputChangeHandler}
-        />
-        <p className={classes.secP}>TO</p>
-        <input
-          name="convertTo"
-          value={userInfo.convertTo}
-          className={classes.input}
-          type="text"
-          placeholder="CURRENCY"
-          onChange={inputChangeHandler}
-        />
+        <label>
+          From:
+          <select
+            name="original"
+            value={userInfo.original}
+            onChange={inputChangeHandler}
+          >
+            {list}
+          </select>
+        </label>
+        <label>
+          To:
+          <select
+            name="convertTo"
+            value={userInfo.convertTo}
+            onChange={inputChangeHandler}
+          >
+            {list}
+          </select>
+        </label>
         <div className={classes.btnBox}>
           <input
             onClick={convertHandler}
