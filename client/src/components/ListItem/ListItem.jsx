@@ -6,14 +6,14 @@ import axios from "axios";
 const ListItem = ({ obj }) => {
   const userCtxMgr = useContext(userCtx);
 
-  const deleteHandler = () => {
+  const deleteHandler = async () => {
     const data = {
       original: obj.original,
       convertTo: obj.convertTo,
       id: userCtxMgr.user,
     };
 
-    axios
+    await axios
       .put("/api/deleteCurrency", data)
       .then((serverRes) => {
         userCtxMgr.setList(() => {
