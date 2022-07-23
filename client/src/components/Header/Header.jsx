@@ -11,10 +11,8 @@ const Header = () => {
 
   const logoutHandler = () => {
     authCtxMgr.setIsLoggedIn(false);
-    // CLEAR USER
     userCtxMgr.setList([]);
     userCtxMgr.setUser("");
-    console.log(userCtxMgr.user);
   };
 
   const showRefHandler = () => {

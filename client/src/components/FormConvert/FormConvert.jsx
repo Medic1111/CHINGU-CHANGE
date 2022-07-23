@@ -26,12 +26,10 @@ const FormConvert = () => {
 
   const convertHandler = async (e) => {
     e.preventDefault();
-    console.log(userInfo);
 
     await axios
       .get(`/api/${userInfo.original}&${userInfo.convertTo}`)
       .then((serverRes) => {
-        console.log(serverRes.data);
         let value = Object.values(serverRes.data);
         let mult = value[0] * Number(userInfo.amount);
         setResult(mult.toFixed(2));
@@ -90,26 +88,30 @@ const FormConvert = () => {
           placeholder="AMOUNT"
           onChange={inputChangeHandler}
         />
-        <label>
+        <label htmlFor="original" className={classes.secP}>
           From:
-          <select
-            name="original"
-            value={userInfo.original}
-            onChange={inputChangeHandler}
-          >
-            {list}
-          </select>
         </label>
-        <label>
+        <select
+          id="original"
+          className={classes.input}
+          name="original"
+          value={userInfo.original}
+          onChange={inputChangeHandler}
+        >
+          {list}
+        </select>
+        <label htmlFor="convertTo" className={classes.secP}>
           To:
-          <select
-            name="convertTo"
-            value={userInfo.convertTo}
-            onChange={inputChangeHandler}
-          >
-            {list}
-          </select>
         </label>
+        <select
+          id="convertTo"
+          className={classes.input}
+          name="convertTo"
+          value={userInfo.convertTo}
+          onChange={inputChangeHandler}
+        >
+          {list}
+        </select>
         <div className={classes.btnBox}>
           <input
             onClick={convertHandler}

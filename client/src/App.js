@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useContext } from "react";
 import Auth from "./components/Auth/Auth";
 import { authCtx } from "./store/auth-ctx";
