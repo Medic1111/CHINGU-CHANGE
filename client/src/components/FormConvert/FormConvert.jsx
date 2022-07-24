@@ -1,19 +1,21 @@
 import classes from "./FormConvert.module.css";
 import axios from "axios";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { userCtx } from "../../store/user-ctx";
+import { uiCtx } from "../../store/ui-ctx";
 import currencyList from "../../data/currencyList";
 
 const FormConvert = () => {
   const userCtxMgr = useContext(userCtx);
+  const uiCtxMgr = useContext(uiCtx);
 
   const [userInfo, setUserInfo] = useState({
     amount: 1,
-    original: "",
-    convertTo: "",
+    original: "USD",
+    convertTo: "CAD",
   });
-  const [result, setResult] = useState(0);
 
+  const [result, setResult] = useState(0);
   const [showSave, setShowSave] = useState(false);
 
   const inputChangeHandler = (e) => {
@@ -26,22 +28,28 @@ const FormConvert = () => {
 
   const convertHandler = async (e) => {
     e.preventDefault();
-
+    uiCtxMgr.setIsLoading(true);
     await axios
       .get(`/api/${userInfo.original}&${userInfo.convertTo}`)
       .then((serverRes) => {
+        uiCtxMgr.setIsLoading(false);
         let value = Object.values(serverRes.data);
         let mult = value[0] * Number(userInfo.amount);
         setResult(mult.toFixed(2));
         setShowSave(true);
       })
       .catch((err) => {
-        console.log(err.response.status);
+        uiCtxMgr.setIsLoading(false);
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
       });
   };
 
   const addToListHandler = async (e) => {
     e.preventDefault();
+    uiCtxMgr.setIsLoading(true);
+
     const objToSend = {
       original: userInfo.original.toUpperCase(),
       convertTo: userInfo.convertTo.toUpperCase(),
@@ -50,21 +58,16 @@ const FormConvert = () => {
     await axios
       .post("/api/saveCurrencies", objToSend)
       .then((serverRes) => {
+        uiCtxMgr.setIsLoading(false);
         userCtxMgr.setList(serverRes.data.currencies);
       })
       .catch((err) => {
-        console.log(err);
-        // ERROR HANDLER
+        uiCtxMgr.setIsLoading(false);
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
       });
   };
-
-  useEffect(() => {
-    setUserInfo({
-      amount: 1,
-      convertTo: "USD",
-      original: "CAD",
-    });
-  }, []);
 
   const list = currencyList.map((cur) => {
     const currencyKey = Object.keys(cur)[0];

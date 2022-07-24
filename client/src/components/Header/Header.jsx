@@ -15,9 +15,7 @@ const Header = () => {
     userCtxMgr.setUser("");
   };
 
-  const showRefHandler = () => {
-    uiCtxMgr.setShowModal(true);
-  };
+  const showRefHandler = () => uiCtxMgr.setShowModal(true);
 
   return (
     <header
@@ -26,14 +24,14 @@ const Header = () => {
       <h1 className={classes.h1}>CHINGU CHANGE</h1>
       <nav className={classes.nav}>
         {authCtxMgr.isLoggedIn && (
-          <p className={classes.logout} onClick={showRefHandler}>
-            Reference
-          </p>
-        )}
-        {authCtxMgr.isLoggedIn && (
-          <p className={classes.logout} onClick={logoutHandler}>
-            Logout
-          </p>
+          <>
+            <p className={classes.logout} onClick={showRefHandler}>
+              Reference
+            </p>
+            <p className={classes.logout} onClick={logoutHandler}>
+              Logout
+            </p>
+          </>
         )}
       </nav>
     </header>
