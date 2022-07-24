@@ -10,6 +10,7 @@ const Header = () => {
   const userCtxMgr = useContext(userCtx);
 
   const logoutHandler = () => {
+    userCtxMgr.setUserInfo({ amount: 1, original: "USD", convertTo: "CAD" });
     authCtxMgr.setIsLoggedIn(false);
     userCtxMgr.setList([]);
     userCtxMgr.setUser("");

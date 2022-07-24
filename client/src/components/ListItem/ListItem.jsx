@@ -34,9 +34,17 @@ const ListItem = ({ obj }) => {
       });
   };
 
+  const assignValueHandler = (e) => {
+    uiCtxMgr.setShowSave(false);
+
+    userCtxMgr.setUserInfo((prev) => {
+      return { amount: 1, original: obj.original, convertTo: obj.convertTo };
+    });
+  };
+
   return (
     <li className={classes.li}>
-      <span>
+      <span className={classes.span} onClick={assignValueHandler}>
         {obj.original} → {obj.convertTo}
       </span>
       <span onClick={deleteHandler} className={classes.x}>

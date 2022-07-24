@@ -5,12 +5,22 @@ export const userCtx = createContext({
   setUser: () => {},
   list: [],
   setList: [],
+  userInfo: {
+    amount: 1,
+    original: "USD",
+    convertTo: "CAD",
+  },
+  setUserInfo: () => {},
 });
 
 const UserProvider = (props) => {
   const [user, setUser] = useState("");
   const [list, setList] = useState([]);
-
+  const [userInfo, setUserInfo] = useState({
+    amount: 1,
+    original: "USD",
+    convertTo: "CAD",
+  });
   return (
     <userCtx.Provider
       value={{
@@ -18,6 +28,8 @@ const UserProvider = (props) => {
         setUser,
         list,
         setList,
+        userInfo,
+        setUserInfo,
       }}
     >
       {props.children}

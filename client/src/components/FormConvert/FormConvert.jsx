@@ -9,19 +9,12 @@ const FormConvert = () => {
   const userCtxMgr = useContext(userCtx);
   const uiCtxMgr = useContext(uiCtx);
 
-  const [userInfo, setUserInfo] = useState({
-    amount: 1,
-    original: "USD",
-    convertTo: "CAD",
-  });
-
   const [result, setResult] = useState(0);
-  const [showSave, setShowSave] = useState(false);
 
   const inputChangeHandler = (e) => {
-    setShowSave(false);
+    uiCtxMgr.setShowSave(false);
     const { name, value } = e.target;
-    setUserInfo((prev) => {
+    userCtxMgr.setUserInfo((prev) => {
       return { ...prev, [name]: value };
     });
   };
@@ -30,13 +23,15 @@ const FormConvert = () => {
     e.preventDefault();
     uiCtxMgr.setIsLoading(true);
     await axios
-      .get(`/api/${userInfo.original}&${userInfo.convertTo}`)
+      .get(
+        `/api/${userCtxMgr.userInfo.original}&${userCtxMgr.userInfo.convertTo}`
+      )
       .then((serverRes) => {
         uiCtxMgr.setIsLoading(false);
         let value = Object.values(serverRes.data);
-        let mult = value[0] * Number(userInfo.amount);
+        let mult = value[0] * Number(userCtxMgr.userInfo.amount);
         setResult(mult.toFixed(2));
-        setShowSave(true);
+        uiCtxMgr.setShowSave(true);
       })
       .catch((err) => {
         uiCtxMgr.setIsLoading(false);
@@ -51,8 +46,8 @@ const FormConvert = () => {
     uiCtxMgr.setIsLoading(true);
 
     const objToSend = {
-      original: userInfo.original.toUpperCase(),
-      convertTo: userInfo.convertTo.toUpperCase(),
+      original: userCtxMgr.userInfo.original.toUpperCase(),
+      convertTo: userCtxMgr.userInfo.convertTo.toUpperCase(),
       userID: userCtxMgr.user,
     };
     await axios
@@ -85,7 +80,7 @@ const FormConvert = () => {
         <input
           autoComplete="off"
           name="amount"
-          value={userInfo.amount}
+          value={userCtxMgr.userInfo.amount}
           className={classes.input}
           type="number"
           placeholder="AMOUNT"
@@ -98,7 +93,7 @@ const FormConvert = () => {
           id="original"
           className={classes.input}
           name="original"
-          value={userInfo.original}
+          value={userCtxMgr.userInfo.original}
           onChange={inputChangeHandler}
         >
           {list}
@@ -110,7 +105,7 @@ const FormConvert = () => {
           id="convertTo"
           className={classes.input}
           name="convertTo"
-          value={userInfo.convertTo}
+          value={userCtxMgr.userInfo.convertTo}
           onChange={inputChangeHandler}
         >
           {list}
@@ -125,8 +120,8 @@ const FormConvert = () => {
 
           <button
             onClick={addToListHandler}
-            className={showSave ? classes.submit : classes.disabled}
-            disabled={!showSave && true}
+            className={uiCtxMgr.showSave ? classes.submit : classes.disabled}
+            disabled={!uiCtxMgr.showSave && true}
             type="submit"
           >
             Add Fav
