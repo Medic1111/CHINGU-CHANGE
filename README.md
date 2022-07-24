@@ -28,6 +28,7 @@ This is a currency conversion application where a registered user can convert a 
 The goal was to build a currency converter application where registered users can conveniently convert currencies using an accessible interface.
 
 ### Screenshots
+
 TODO
 
 ### Links
@@ -45,6 +46,8 @@ TODO
   - Node.js
   - Express
   - Jest
+- DB
+  - MongoDB
 - Tech
   - Discord
   - VS Code live-share extension
@@ -53,12 +56,57 @@ TODO
 ### Session Logs
 
 #### Session 1:
-TODO
+
+- Duration: 2:00
+- Objectives:
+  - [x] Choose project
+  - [x] Determine MVP features
+  - [x] Plan Session platforms
+  - [x] Set a schedule
+  - [x] Development of project structure
+  - [x] Install all needed dependencies
+  - [x] Development of server
+  - [x] Rough blueprint of client
+  - [x] Ensure client/server communication
+  - [x] Request Third Party API key
+  - [x] Ensure third party API communication with test key
+  - [x] Test Client/Server relationship with third party API data
+  - [x] Create DB with mutual dev access
+- After Session
+  - John:
+  - Gabbie:
 
 #### Session 2:
-TODO
+
+- Duration: 1:00
+- Objectives:
+  - [x] Code revision
+  - [x] Determine status codes to be used
+  - [x] Determine error handling
+  - [x] Bug fixes
+  - [x] Revision of DB implementation
+  - [x] Feature list accomplished
+  - [x] Add extra features to be accomplished by next session
+  - [x] Server and Client structure review
+  - [x] Development version deployment
+- After Session
+  - John:
+  - Gabbie:
+
 #### Session 3:
-TODO
+
+- Duration: 1:00
+- Objectives:
+  - [x] Code revision
+  - [x] Code clean up
+  - [x] Local Manual Testing
+  - [x] Dev Deployed Manual Testing
+  - [x] UI-UX enhancing
+  - [x] All wanted features accomplished
+  - [x] Decide on final thoughts and actions
+- After Session
+  - John:
+  - Gabbie:
 
 ### Contributors
 
