@@ -1,6 +1,6 @@
 import classes from "./FormConvert.module.css";
 import axios from "axios";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { userCtx } from "../../store/user-ctx";
 import { uiCtx } from "../../store/ui-ctx";
 import currencyList from "../../data/currencyList";
@@ -11,8 +11,8 @@ const FormConvert = () => {
 
   const [userInfo, setUserInfo] = useState({
     amount: 1,
-    original: "",
-    convertTo: "",
+    original: "USD",
+    convertTo: "CAD",
   });
 
   const [result, setResult] = useState(0);
@@ -56,14 +56,6 @@ const FormConvert = () => {
         uiCtxMgr.onSetError("Oops, something went wrong =[ ...please try again")
       );
   };
-
-  useEffect(() => {
-    setUserInfo({
-      amount: 1,
-      convertTo: "USD",
-      original: "CAD",
-    });
-  }, []);
 
   const list = currencyList.map((cur) => {
     const currencyKey = Object.keys(cur)[0];
