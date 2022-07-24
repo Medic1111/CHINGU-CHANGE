@@ -8,12 +8,15 @@ export const uiCtx = createContext({
   errorMsg: "",
   setErrorMsg: () => {},
   onSetError: (msg) => {},
+  isLoading: false,
+  setIsLoading: () => {},
 });
 
 const UiProvider = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSetError = (msg) => {
     setIsError((prev) => !prev);
@@ -30,6 +33,8 @@ const UiProvider = (props) => {
         errorMsg,
         setErrorMsg,
         onSetError,
+        isLoading,
+        setIsLoading,
       }}
     >
       {props.children}

@@ -28,22 +28,28 @@ const FormConvert = () => {
 
   const convertHandler = async (e) => {
     e.preventDefault();
-
+    uiCtxMgr.setIsLoading(true);
     await axios
       .get(`/api/${userInfo.original}&${userInfo.convertTo}`)
       .then((serverRes) => {
+        uiCtxMgr.setIsLoading(false);
         let value = Object.values(serverRes.data);
         let mult = value[0] * Number(userInfo.amount);
         setResult(mult.toFixed(2));
         setShowSave(true);
       })
-      .catch((err) =>
-        uiCtxMgr.onSetError("Oops, something went wrong =[ ...please try again")
-      );
+      .catch((err) => {
+        uiCtxMgr.setIsLoading(false);
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
+      });
   };
 
   const addToListHandler = async (e) => {
     e.preventDefault();
+    uiCtxMgr.setIsLoading(true);
+
     const objToSend = {
       original: userInfo.original.toUpperCase(),
       convertTo: userInfo.convertTo.toUpperCase(),
@@ -51,10 +57,16 @@ const FormConvert = () => {
     };
     await axios
       .post("/api/saveCurrencies", objToSend)
-      .then((serverRes) => userCtxMgr.setList(serverRes.data.currencies))
-      .catch((err) =>
-        uiCtxMgr.onSetError("Oops, something went wrong =[ ...please try again")
-      );
+      .then((serverRes) => {
+        uiCtxMgr.setIsLoading(false);
+        userCtxMgr.setList(serverRes.data.currencies);
+      })
+      .catch((err) => {
+        uiCtxMgr.setIsLoading(false);
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
+      });
   };
 
   const list = currencyList.map((cur) => {
