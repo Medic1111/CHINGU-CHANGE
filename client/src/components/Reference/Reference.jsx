@@ -7,9 +7,7 @@ import { uiCtx } from "../../store/ui-ctx";
 const Reference = () => {
   const uiCtxMgr = useContext(uiCtx);
 
-  const closeReferenceHandler = () => {
-    uiCtxMgr.setShowModal(false);
-  };
+  const closeReferenceHandler = () => uiCtxMgr.setShowModal(false);
 
   return (
     <Portal>

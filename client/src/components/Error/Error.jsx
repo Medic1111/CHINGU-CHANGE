@@ -6,9 +6,7 @@ import { useContext } from "react";
 const Error = () => {
   const uiCtxMgr = useContext(uiCtx);
 
-  const closeErrorHandler = () => {
-    uiCtxMgr.onSetError("");
-  };
+  const closeErrorHandler = () => uiCtxMgr.onSetError("");
 
   return (
     <Portal>

@@ -14,6 +14,7 @@ const UiProvider = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
   const onSetError = (msg) => {
     setIsError((prev) => !prev);
     setErrorMsg(msg);

@@ -24,11 +24,9 @@ const ListItem = ({ obj }) => {
           });
         });
       })
-      .catch((err) => {
-        uiCtxMgr.onSetError(
-          "Oops, something went wrong =[ ...please try again"
-        );
-      });
+      .catch((err) =>
+        uiCtxMgr.onSetError("Oops, something went wrong =[ ...please try again")
+      );
   };
 
   return (
