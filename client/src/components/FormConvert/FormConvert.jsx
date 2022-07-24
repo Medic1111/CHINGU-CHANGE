@@ -14,8 +14,8 @@ const FormConvert = () => {
     original: "",
     convertTo: "",
   });
-  const [result, setResult] = useState(0);
 
+  const [result, setResult] = useState(0);
   const [showSave, setShowSave] = useState(false);
 
   const inputChangeHandler = (e) => {
@@ -37,11 +37,9 @@ const FormConvert = () => {
         setResult(mult.toFixed(2));
         setShowSave(true);
       })
-      .catch((err) => {
-        uiCtxMgr.onSetError(
-          "Oops, something went wrong =[ ...please try again"
-        );
-      });
+      .catch((err) =>
+        uiCtxMgr.onSetError("Oops, something went wrong =[ ...please try again")
+      );
   };
 
   const addToListHandler = async (e) => {
@@ -53,14 +51,10 @@ const FormConvert = () => {
     };
     await axios
       .post("/api/saveCurrencies", objToSend)
-      .then((serverRes) => {
-        userCtxMgr.setList(serverRes.data.currencies);
-      })
-      .catch((err) => {
-        uiCtxMgr.onSetError(
-          "Oops, something went wrong =[ ...please try again"
-        );
-      });
+      .then((serverRes) => userCtxMgr.setList(serverRes.data.currencies))
+      .catch((err) =>
+        uiCtxMgr.onSetError("Oops, something went wrong =[ ...please try again")
+      );
   };
 
   useEffect(() => {

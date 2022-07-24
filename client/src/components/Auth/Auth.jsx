@@ -19,6 +19,8 @@ const Auth = () => {
   });
 
   const inputChangeHandler = (e) => {
+    setError(false);
+
     const { name, value } = e.target;
 
     setUserInfo((prev) => {
@@ -33,44 +35,65 @@ const Auth = () => {
       password: userInfo.password,
     };
 
-    await axios
-      .post("api/login", objToSend)
-      .then((serverRes) => {
-        setError(false);
-        authCtxMgr.setIsLoggedIn(true);
-        userCtxMgr.setUser(serverRes.data.id);
-        userCtxMgr.setList(serverRes.data.currencies);
-      })
-      .catch((err) => {
-        setError(true);
-        err.response.status === 500 && setErrorMsg("Server error");
-        err.response.status === 401 && setErrorMsg("Wrong Credentials");
-        err.response.status === 404 && setErrorMsg("Not Registered");
-      });
+    if (userInfo.username.length > 0 && userInfo.password.length > 0) {
+      await axios
+        .post("api/login", objToSend)
+        .then((serverRes) => {
+          setError(false);
+          authCtxMgr.setIsLoggedIn(true);
+          userCtxMgr.setUser(serverRes.data.id);
+          userCtxMgr.setList(serverRes.data.currencies);
+        })
+        .catch((err) => {
+          setError(true);
+          err.response.status === 500 && setErrorMsg("Server error");
+          err.response.status === 401 && setErrorMsg("Wrong Credentials");
+          err.response.status === 404 && setErrorMsg("Not Registered");
+        });
+    } else {
+      setError(true);
+      setErrorMsg("All fields are required");
+    }
   };
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    await axios
-      .post("api/register", userInfo)
-      .then((serverRes) => {
-        setError(false);
-        authCtxMgr.setIsLoggedIn(true);
-        userCtxMgr.setUser(serverRes.data.id);
-        userCtxMgr.setList(serverRes.data.currencies);
-      })
-      .catch((err) => {
-        setError(true);
-        err.response.status === 500 && setErrorMsg("Server error");
-        err.response.status === 409 && setErrorMsg("Already Registered");
-        err.response.status === 400 && setErrorMsg("All fields required");
-      });
+
+    if (
+      userInfo.email.includes("@") &&
+      userInfo.username.length >= 2 &&
+      userInfo.password.length >= 6
+    ) {
+      await axios
+        .post("api/register", userInfo)
+        .then((serverRes) => {
+          setError(false);
+          authCtxMgr.setIsLoggedIn(true);
+          userCtxMgr.setUser(serverRes.data.id);
+          userCtxMgr.setList(serverRes.data.currencies);
+        })
+        .catch((err) => {
+          setError(true);
+          err.response.status === 500 && setErrorMsg("Server error");
+          err.response.status === 409 && setErrorMsg("Already Registered");
+          err.response.status === 400 && setErrorMsg("All fields required");
+        });
+    } else {
+      setError(true);
+      userInfo.email.includes("@") || setErrorMsg("Invalid Email");
+      userInfo.username.length >= 2 || setErrorMsg("Username is required");
+      userInfo.password.length >= 6 ||
+        setErrorMsg("Password must be at least 6 characters long");
+    }
   };
 
   const changeToLoginHandler = () => {
     authCtxMgr.setShowLogin(true);
+    setError(false);
   };
+
   const changeToRegisterHandler = () => {
+    setError(false);
     authCtxMgr.setShowLogin(false);
   };
 
@@ -113,12 +136,11 @@ const Auth = () => {
           type="submit"
         />
       </form>
-      {!authCtxMgr.showLogin && (
+      {!authCtxMgr.showLogin ? (
         <p className={classes.p} onClick={changeToLoginHandler}>
           Already Registered? Login
         </p>
-      )}
-      {authCtxMgr.showLogin && (
+      ) : (
         <p className={classes.p} onClick={changeToRegisterHandler}>
           Not Registered? Register
         </p>
