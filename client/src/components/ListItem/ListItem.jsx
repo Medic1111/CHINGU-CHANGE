@@ -9,6 +9,7 @@ const ListItem = ({ obj }) => {
   const uiCtxMgr = useContext(uiCtx);
 
   const deleteHandler = async () => {
+    uiCtxMgr.setIsLoading(true);
     const data = {
       original: obj.original,
       convertTo: obj.convertTo,
@@ -18,15 +19,19 @@ const ListItem = ({ obj }) => {
     await axios
       .put("/api/deleteCurrency", data)
       .then((serverRes) => {
+        uiCtxMgr.setIsLoading(false);
         userCtxMgr.setList(() => {
           return userCtxMgr.list.filter((objRet) => {
             return objRet !== obj;
           });
         });
       })
-      .catch((err) =>
-        uiCtxMgr.onSetError("Oops, something went wrong =[ ...please try again")
-      );
+      .catch((err) => {
+        uiCtxMgr.onSetError(
+          "Oops, something went wrong =[ ...please try again"
+        );
+        uiCtxMgr.setIsLoading(false);
+      });
   };
 
   return (
