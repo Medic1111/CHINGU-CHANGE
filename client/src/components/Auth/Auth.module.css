@@ -6,12 +6,16 @@
   align-items: center;
   flex-direction: column;
   gap: 2.5vh;
+  background: url("../../assets//hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .h2 {
   font-size: 2.5em;
   letter-spacing: 1.7px;
   width: 100%;
-  padding-left: 10%;
+  text-align: center;
   color: #f7f7f7d7;
 }
 .form {
@@ -20,8 +24,13 @@
   align-items: center;
   flex-direction: column;
   background-color: #f7f7f70e;
+  background-color: #f7f7f7ad;
+  background-color: rgba(4, 23, 37, 0.727);
+
   height: 60%;
   width: 80%;
+  width: 60%;
+
   border-radius: 5px;
   gap: 2em;
 }
@@ -31,13 +40,22 @@
   border: transparent;
   border-left: solid rgb(224, 198, 132);
   background-color: #f7f7f70e;
+  background-color: #f7f7f70e;
+  background-color: rgba(4, 23, 37, 0.143);
+  background-color: rgba(4, 23, 37, 0.151);
+  background-color: #f7f7f7;
   padding: 0 0.25em;
   font-size: 1.7em;
   color: #f7f7f7;
+  color: rgba(4, 23, 37, 0.577);
+  color: rgba(4, 23, 37, 0.584);
+
   outline: none;
 }
 .input::placeholder {
   color: #f7f7f7be;
+  color: rgba(4, 23, 37, 0.584);
+  color: rgba(4, 23, 37, 0.577);
 }
 
 .submit {
@@ -48,6 +66,8 @@
   font-size: 1.7em;
   background-color: rgba(224, 198, 132, 0.855);
   color: rgba(4, 23, 37, 0.631);
+  color: #f7f7f7;
+
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
@@ -58,13 +78,23 @@
   background-color: rgb(224, 198, 132);
   transition: 0.3s;
   color: rgba(4, 23, 37, 0.846);
+  color: #f7f7f7;
 }
 .p {
   font-size: 1.5em;
   letter-spacing: 0.5px;
   cursor: pointer;
-  margin-top: 1vh;
+  margin: 1vh 0;
 }
 .p:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 798px) {
+  .form {
+    width: 80%;
+  }
+  .submit {
+    width: 70%;
+  }
 }
