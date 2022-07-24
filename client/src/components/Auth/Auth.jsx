@@ -56,6 +56,8 @@ const Auth = () => {
           err.response.status === 404 && setErrorMsg("Not Registered");
         });
     } else {
+      uiCtxMgr.setIsLoading(false);
+
       setError(true);
       setErrorMsg("All fields are required");
     }
@@ -88,6 +90,8 @@ const Auth = () => {
         });
     } else {
       setError(true);
+      uiCtxMgr.setIsLoading(false);
+
       userInfo.email.includes("@") || setErrorMsg("Invalid Email");
       userInfo.username.length >= 2 || setErrorMsg("Username is required");
       userInfo.password.length >= 6 ||
@@ -107,11 +111,11 @@ const Auth = () => {
 
   return (
     <article className={classes.article}>
-      <h2 className={classes.h2}>
-        {authCtxMgr.showLogin ? "LOGIN" : "REGISTER"}
-      </h2>
-      {error && <p className={classes.p}>{errorMsg}</p>}
       <form className={classes.form}>
+        <h2 className={classes.h2}>
+          {authCtxMgr.showLogin ? "LOGIN" : "REGISTER"}
+        </h2>
+        {error && <p className={classes.p}>{errorMsg}</p>}
         <input
           onChange={inputChangeHandler}
           name="username"
@@ -143,16 +147,16 @@ const Auth = () => {
           className={classes.submit}
           type="submit"
         />
+        {!authCtxMgr.showLogin ? (
+          <p className={classes.p} onClick={changeToLoginHandler}>
+            Already Registered? Login
+          </p>
+        ) : (
+          <p className={classes.p} onClick={changeToRegisterHandler}>
+            Not Registered? Register
+          </p>
+        )}
       </form>
-      {!authCtxMgr.showLogin ? (
-        <p className={classes.p} onClick={changeToLoginHandler}>
-          Already Registered? Login
-        </p>
-      ) : (
-        <p className={classes.p} onClick={changeToRegisterHandler}>
-          Not Registered? Register
-        </p>
-      )}
     </article>
   );
 };
