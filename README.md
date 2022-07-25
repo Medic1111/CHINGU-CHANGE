@@ -74,8 +74,8 @@ The goal was to build a currency converter application where registered users ca
   - [x] Test Client/Server relationship with third party API data
   - [x] Create DB with mutual dev access
 - After Session
-  - John:
-  - Gabbie:
+  - John: Create routes and handlers, Solidify server, build server Auth feature connected to DB
+  - Gabbie: Build Client components
 
 #### Session 2:
 
@@ -91,8 +91,8 @@ The goal was to build a currency converter application where registered users ca
   - [x] Server and Client structure review
   - [x] Development version deployment
 - After Session
-  - John:
-  - Gabbie:
+  - John: Complete all routes and handlers, ensure DB connection to all needed routes along with functionality
+  - Gabbie: Layout all API calls and ensure proper transfer of data, finish all Client components, useContext for _State_
 
 #### Session 3:
 
@@ -106,8 +106,8 @@ The goal was to build a currency converter application where registered users ca
   - [x] All wanted features accomplished
   - [x] Decide on final thoughts and actions
 - After Session
-  - John:
-  - Gabbie:
+  - John: Server Testing with JEST, Server folder structure, code review, Documentation
+  - Gabbie: Finish UI/UX, Code review, Documentation, Production deployment
 
 ### Contributors
 
