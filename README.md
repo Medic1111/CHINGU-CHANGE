@@ -1,6 +1,6 @@
 # Chingu-Change
 
-![Demo of App](demo.gif)
+![Demo of App](./media/demo.gif)
 
 This is a currency conversion application where a registered user can convert a specified amount across all currencies. They also have the ability to save and delete their favorite conversions.
 
@@ -29,7 +29,8 @@ The goal was to build a currency converter application where registered users ca
 
 ### Screenshots
 
-TODO
+![Image of Log In](./media/2.png)
+![Image of Conversion Page](./media/1.png)
 
 ### Links
 
@@ -73,8 +74,8 @@ TODO
   - [x] Test Client/Server relationship with third party API data
   - [x] Create DB with mutual dev access
 - After Session
-  - John:
-  - Gabbie:
+  - John: Create routes and handlers, Solidify server, build server Auth feature connected to DB
+  - Gabbie: Build Client components
 
 #### Session 2:
 
@@ -90,8 +91,8 @@ TODO
   - [x] Server and Client structure review
   - [x] Development version deployment
 - After Session
-  - John:
-  - Gabbie:
+  - John: Complete all routes and handlers, ensure DB connection to all needed routes along with functionality
+  - Gabbie: Layout all API calls and ensure proper transfer of data, finish all Client components, useContext for _State_
 
 #### Session 3:
 
@@ -105,8 +106,8 @@ TODO
   - [x] All wanted features accomplished
   - [x] Decide on final thoughts and actions
 - After Session
-  - John:
-  - Gabbie:
+  - John: Server Testing with JEST, Server folder structure, code review, Documentation
+  - Gabbie: Finish UI/UX, Code review, Documentation, Production deployment
 
 ### Contributors
 
