@@ -15,15 +15,38 @@
   font-size: 4em;
   letter-spacing: 3px;
   color: rgb(224, 198, 132);
+  text-align: center;
 }
 
 .logout {
-  font-size: 1.9em;
+  font-size: 1.6em;
   color: #f7f7f7e9;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
 }
 .logout:hover {
   color: #f7f7f7;
   cursor: pointer;
   transition: 0.25s;
   text-decoration: underline;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+}
+
+@media (max-width: 798px) {
+  .headerIn,
+  .headerOut {
+    flex-direction: column;
+    height: auto;
+    gap: 2em;
+    padding: 2.5vh 5vw;
+  }
+  .nav {
+    width: 100%;
+    gap: 2em;
+  }
 }

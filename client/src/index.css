@@ -19,6 +19,36 @@ body {
   color: #f7f7f7;
   position: relative;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+
+  -webkit-box-shadow: none;
+}
+::-webkit-scrollbar-thumb {
+  background: white;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+
+  -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: none;
+}
 
 @media (max-width: 798px) {
   html {
