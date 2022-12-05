@@ -35,7 +35,7 @@ The goal was to build a currency converter application where registered users ca
 ### Links
 
 - GitHub: [github.com/medic1111/chingu-change](https://github.com/Medic1111/CHINGU-CHANGE)
-- Live Site: [chingu-change.herokuapp.com/](https://chingu-change.herokuapp.com/)
+- Live Site: [https://chingu-change.onrender.com/](https://chingu-change.onrender.com/)
 
 ## Our Process
 
